@@ -12,7 +12,7 @@ Just drop in the files and run the included scripts to transform messy C++ into 
 
 ## Included Tools & Scripts
 
-- `.clang-format-cpp` – Config for `.cpp/.cxx/.cc` files  
+- `.clang-format-cpp` – Config for `.c/.cpp/.cxx/.cc` files  
 - `.clang-format-header` – Config for header files  
 - `format_code.sh` – Shell script for Unix-like environments  
 - `format_code.bat` – Batch script for Windows  
