@@ -1,7 +1,7 @@
 # CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
 
 To the extent possible under law,  
-the creator of **Formatron** has waived all copyright  
+the creator of **Formateur** has waived all copyright  
 and related or neighboring rights to this configuration.  
 
 You can copy, modify, distribute, and use it  
