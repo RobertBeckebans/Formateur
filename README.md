@@ -7,3 +7,7 @@ programmers don't need to formulate ad hoc style rules,
 nor do they need to debate with other programmers what style rules should be used, saving time, communication overhead, and mental energy."
 
 Just throw these scripts into your code and run format_code.bat to make any messy C++ source human readable.
+
+## License
+
+This project is released under [CC0 1.0](LICENSE.md). Use it freely.
