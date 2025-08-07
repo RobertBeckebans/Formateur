@@ -1,12 +1,32 @@
 # Formateur
 
-"Formatting code is a mostly mechanical task which takes both time and mental effort.
-By using an automatic formatting tool, a programmer is relieved of this task and can concentrate on more important things.
-Furthermore, by sticking to an established style guide (such as this one),
-programmers don't need to formulate ad hoc style rules,
-nor do they need to debate with other programmers what style rules should be used, saving time, communication overhead, and mental energy."
+**C++ has never looked this good.**
 
-Just throw these scripts into your code and run format_code.bat to make any messy C++ source human readable.
+Formateur is a stylish and opinionated `clang-format` configuration for modern C++ developers who appreciate clean, consistent, and beautiful code.
+
+##  Why Formateur?
+
+Formatting code is often a mechanical burden that steals mental energy.  
+Formateur automates that process — no more debates about braces, spaces, or wrapping.
+Just drop in the files and run the included scripts to transform messy C++ into readable, maintainable code ready for human review.
+
+## Included Tools & Scripts
+
+- `.clang-format-cpp` – Config for `.cpp/.cxx/.cc` files  
+- `.clang-format-header` – Config for header files  
+- `format_code.sh` – Shell script for Unix-like environments  
+- `format_code.bat` – Batch script for Windows  
+- Bonus: `astyle` configs/scripts (`astyle-cpp.ini`, `astyle-header.ini`, `astyle.exe`) if desired that control statements should be enwrapped with braces
+
+##  Usage
+
+Copy these files to your project, then in your project root:
+
+**On Windows:**
+Double-click on format_code.bat
+
+**On Linux/macOS:**
+./format_code.sh
 
 ## License
 
