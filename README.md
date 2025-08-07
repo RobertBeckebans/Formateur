@@ -1,4 +1,4 @@
-# Formatron
+# Formateur
 
 "Formatting code is a mostly mechanical task which takes both time and mental effort.
 By using an automatic formatting tool, a programmer is relieved of this task and can concentrate on more important things.
