@@ -64,14 +64,14 @@ find . -regex ".*\.\(h\|hpp\)" \
 	! -path "./libs/*" \
 	! -path "./extern/*" \
     ! -path "./thirdparty/*" \
-	-print0 | xargs -0 -P 16 "$CLANGFMT_BIN" -i
+	-print0 | xargs -0 -P 16 "$CLANGFMT_BIN" -i --verbose
 
 cp .clang-format-cpp .clang-format
 find . -regex ".*\.\(c\|cpp\|cxx\|cc\)" \
 	! -path "./libs/*" \
 	! -path "./extern/*" \
     ! -path "./thirdparty/*" \
-	-print0 | xargs -0 -P 16 "$CLANGFMT_BIN" -i
+	-print0 | xargs -0 -P 16 "$CLANGFMT_BIN" -i --verbose
 
 rm .clang-format
 
