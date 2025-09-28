@@ -43,7 +43,7 @@ def simplify_void_parameters_file(file_path: str):
     if count > 0:
         with open(file_path, 'w', encoding='utf-8') as file:
             file.write(cleaned_content)
-        print(f"Processed {count} comments in {file_path}")
+        print(f"Processed {count} voids in {file_path}")
 
 def process_directory(skip_dirs=None, skip_files=None):
     """
