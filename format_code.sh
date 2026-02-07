@@ -11,7 +11,15 @@ print_usage () {
 
 # Determine platform and set clang-format binary path
 case "$(uname -s)" in
-    Linux*)   CLANGFMT_DEFAULT="./clang-format" ;;
+    Linux*)
+        if command -v clang-format-18 >/dev/null 2>&1; then
+            CLANGFMT_DEFAULT="clang-format-18"
+        elif command -v clang-format >/dev/null 2>&1; then
+            CLANGFMT_DEFAULT="clang-format"
+        else
+            CLANGFMT_DEFAULT="./clang-format"
+        fi
+        ;;
     MINGW*|MSYS*|CYGWIN*) CLANGFMT_DEFAULT="./clang-format.exe" ;;
     *)        echo "ERROR: Unsupported platform: $(uname -s)"; print_usage; exit 1 ;;
 esac
@@ -20,7 +28,7 @@ esac
 CLANGFMT_BIN=${CLANGFMT_BIN:-$CLANGFMT_DEFAULT}
 
 # Check if the binary exists and is executable
-if [ ! -x "$CLANGFMT_BIN" ]; then
+if ! command -v "$CLANGFMT_BIN" >/dev/null 2>&1 && [ ! -x "$CLANGFMT_BIN" ]; then
     echo "ERROR: $CLANGFMT_BIN not found or not executable"
     print_usage
     exit 1
@@ -61,24 +69,28 @@ fi
 # Copy different configs because -style=file: did not work
 cp .clang-format-header .clang-format
 find . -regex ".*\.\(h\|hpp\)" \
+	! -path "./build/*" \
+	! -path "./build-clang/*" \
 	! -path "./libs/*" \
 	! -path "./extern/*" \
-    ! -path "./thirdparty/*" \
+	! -path "./thirdparty/*" \
 	-print0 | xargs -0 -P 16 "$CLANGFMT_BIN" -i --verbose
 
 cp .clang-format-cpp .clang-format
 find . -regex ".*\.\(c\|cpp\|cxx\|cc\)" \
+    ! -path "./build/*" \
+    ! -path "./build-clang/*" \
 	! -path "./libs/*" \
 	! -path "./extern/*" \
-    ! -path "./thirdparty/*" \
+	! -path "./thirdparty/*" \
 	-print0 | xargs -0 -P 16 "$CLANGFMT_BIN" -i --verbose
 
 rm .clang-format
 
 # Post-process files for ( void ), (void) -> () (requires Python)
 # This might break some C code so outcommented this if you run into problems
-if command -v python >/dev/null 2>&1; then
-    python format_slimvoids.py
+if command -v python3 >/dev/null 2>&1; then
+    python3 format_slimvoids.py
     echo "Void post-processing completed!"
 else
     echo "WARNING: Python3 not found, skipping right-alignment post-processing."
