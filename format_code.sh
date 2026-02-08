@@ -89,7 +89,10 @@ rm .clang-format
 
 # Post-process files for ( void ), (void) -> () (requires Python)
 # This might break some C code so outcommented this if you run into problems
-if command -v python3 >/dev/null 2>&1; then
+if command -v python >/dev/null 2>&1; then
+    python format_slimvoids.py
+    echo "Void post-processing completed!"
+elif command -v python3 >/dev/null 2>&1; then
     python3 format_slimvoids.py
     echo "Void post-processing completed!"
 else
