@@ -69,6 +69,7 @@ fi
 # Copy different configs because -style=file: did not work
 cp .clang-format-header .clang-format
 find . -regex ".*\.\(h\|hpp\)" \
+	! -path "./.venv/*" \
 	! -path "./build/*" \
 	! -path "./build-clang/*" \
 	! -path "./libs/*" \
@@ -77,7 +78,8 @@ find . -regex ".*\.\(h\|hpp\)" \
 	-print0 | xargs -0 -P 16 "$CLANGFMT_BIN" -i --verbose
 
 cp .clang-format-cpp .clang-format
-find . -regex ".*\.\(c\|cpp\|cxx\|cc\)" \
+find . -regex ".*\.\(c\|cpp\)" \
+	! -path "./.venv/*" \
     ! -path "./build/*" \
     ! -path "./build-clang/*" \
 	! -path "./libs/*" \
@@ -96,7 +98,7 @@ elif command -v python3 >/dev/null 2>&1; then
     python3 format_slimvoids.py
     echo "Void post-processing completed!"
 else
-    echo "WARNING: Python3 not found, skipping right-alignment post-processing."
+    echo "WARNING: Python not found, skipping right-alignment post-processing."
 fi
 
 echo "Formatting completed!"
